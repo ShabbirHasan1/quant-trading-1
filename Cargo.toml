@@ -1,0 +1,9 @@
+# https://doc.rust-lang.org/cargo/reference/workspaces.html
+
+[workspace]
+members = ["trading-okx"]
+
+[workspace.package]
+version = "0.1.0"
+rust-version = "1.70.0"
+license = "MIT"
