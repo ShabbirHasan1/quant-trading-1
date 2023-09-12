@@ -1,10 +1,6 @@
-use clap::Parser;
-
-pub struct OKX {}
-
-impl OKX {
-    fn get_index_candles() {}
-}
+mod market;
+mod network;
+mod setting;
 
 fn main() {
     println!("Hello, world!");
