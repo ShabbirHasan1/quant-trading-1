@@ -14,5 +14,10 @@ tracing-subscriber = { workspace = true }
 clap = { workspace = true }
 serde = { version = "1.0.188", features = ["derive"] }
 lazy_static = "1.4.0"
-toml = "0.7.7"
+toml = "0.8.0"
 anyhow.workspace = true
+chrono.workspace = true
+hmac.workspace = true
+sha2.workspace = true
+base64.workspace = true
+serde_json.workspace = true

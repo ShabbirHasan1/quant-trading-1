@@ -1,4 +1,5 @@
 pub mod result;
+use chrono::prelude::*;
 
 use crate::network::http::TradeHttp;
 
@@ -7,9 +8,7 @@ static CANDLES: &str = "/api/v5/market/candles"; //获取K线数据。K线数据
 static BASE_URL: &str = "https://www.okx.com";
 
 pub mod Market {
-    use reqwest::header::{HeaderMap, HeaderValue};
-
-    use crate::setting::Settings;
+    use reqwest::header::HeaderMap;
 
     use super::{result::CANDLES_RESULT, *};
 
@@ -19,21 +18,13 @@ pub mod Market {
 
     pub fn request_headers() -> HeaderMap {
         let mut headerMap = HeaderMap::new();
-        let api_key = Settings::default().trading_keys.api_key;
-        let secret_key = Settings::default().trading_keys.secret_key;
-        let passphrase = Settings::default().trading_keys.passphrase;
-        let api_key_value = HeaderValue::from_str(api_key.as_str()).expect("Invalid API key");
-        let passphrase_value =
-            HeaderValue::from_str(passphrase.as_str()).expect("Invalid passphrase");
-        headerMap.append("OK-ACCESS-KEY", api_key_value);
-        headerMap.append("OK-ACCESS-PASSPHRASE", passphrase_value);
+
         headerMap
     }
 
     pub fn get_history_candles() {}
 
     pub fn get_candles() {
-        let headers = Market::request_headers();
-        Market::init().get::<CANDLES_RESULT>(CANDLES, headers);
+        Market::init().get::<CANDLES_RESULT>(CANDLES, None);
     }
 }
