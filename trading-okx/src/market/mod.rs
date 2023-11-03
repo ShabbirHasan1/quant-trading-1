@@ -24,7 +24,7 @@ pub mod Market {
 
     pub fn get_history_candles() {}
 
-    pub fn get_candles() {
-        Market::init().get::<CANDLES_RESULT>(CANDLES, None);
+    pub fn get_candles() -> CANDLES_RESULT {
+        return Market::init().get::<CANDLES_RESULT>(CANDLES, None);
     }
 }

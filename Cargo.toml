@@ -1,7 +1,8 @@
 # https://doc.rust-lang.org/cargo/reference/workspaces.html
 
 [workspace]
-members = ["trading-okx"]
+members = ["trading-okx", "coin-glass"]
+resolver = "2"
 
 [workspace.package]
 version = "0.1.0"

@@ -2,6 +2,8 @@ mod market;
 mod network;
 mod setting;
 
+use market::*;
+
 fn main() {
-    println!("Hello, world!");
+    Market::get_candle()
 }
