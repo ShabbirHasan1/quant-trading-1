@@ -5,15 +5,13 @@ use std::{fs::File, io::Read};
 static SETTING_PATH: &str = "config.toml";
 
 #[derive(Debug, Deserialize)]
-pub struct TradingKeys {
+pub struct CoinGlassKeys {
     pub api_key: String,
-    pub secret_key: String,
-    pub passphrase: String,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct Settings {
-    pub trading_keys: TradingKeys,
+    pub coin_glass_keys: CoinGlassKeys,
 }
 
 impl Default for Settings {

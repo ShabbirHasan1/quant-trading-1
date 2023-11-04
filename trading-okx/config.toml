@@ -2,6 +2,3 @@
 api_key = ""
 secret_key = ""
 passphrase = ""
-
-[coin-glass]
-api_key = ""
