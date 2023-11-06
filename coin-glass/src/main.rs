@@ -7,7 +7,7 @@ mod setting;
 static BASE_URL: &str = "https://open-api.coinglass.com";
 static LONG_SHORT_ACCOUNT: &str = "/public/v2/indicator/top_long_short_account_ratio";
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct LongShortAccountResponse {
     t: u32,
     o: u32,
@@ -26,7 +26,7 @@ pub async fn get_long_short_account(
     let now_timestamp = dt.timestamp();
     let latest_six_months_timestamp = dt.checked_sub_months(Months::new(6)).unwrap().timestamp();
 
-    let res = reqwest::Client::default()
+    let res: LongShortAccountResponse = reqwest::Client::default()
         .get(format!(
             "{}{}?ex={}&pair={}&interval={}&limit=500&start_time={}&end_time={}",
             BASE_URL,
@@ -43,6 +43,7 @@ pub async fn get_long_short_account(
         .json::<LongShortAccountResponse>()
         .await?;
 
+    println!("response: {:?}", res);
     Ok(res)
 }
 
@@ -51,13 +52,13 @@ pub async fn get_long_short_account(
 fn main() {}
 
 #[cfg(test)]
-pub mod CoinGlassTest {
+pub mod coin_glass_test {
 
     use super::*;
 
     #[tokio::test]
     async fn get_sol_long_short_account() {
-        let ex = String::from("Okex");
+        let ex = String::from("Binance");
         let pair = String::from("SOLUSDT");
         let interval = String::from("h1");
 
