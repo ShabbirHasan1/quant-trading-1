@@ -27,7 +27,7 @@ impl Default for Settings {
 
         match file.read_to_string(&mut file_content) {
             Ok(c) => c,
-            Err(e) => panic!("Couldn't read setting"),
+            Err(_e) => panic!("Couldn't read setting"),
         };
 
         toml::from_str(&file_content).expect("Couldn't read setting")

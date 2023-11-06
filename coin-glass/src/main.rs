@@ -8,7 +8,7 @@ static BASE_URL: &str = "https://open-api.coinglass.com";
 static LONG_SHORT_ACCOUNT: &str = "/public/v2/indicator/top_long_short_account_ratio";
 
 #[derive(Serialize, Deserialize)]
-struct LongShortAccountResponse {
+pub struct LongShortAccountResponse {
     t: u32,
     o: u32,
     c: u32,
@@ -23,7 +23,6 @@ pub async fn get_long_short_account(
 ) -> Result<LongShortAccountResponse, reqwest::Error> {
     let api_key = Settings::default().coin_glass_keys.api_key;
     let dt = Local::now();
-    let naive_utc = dt.naive_utc();
     let now_timestamp = dt.timestamp();
     let latest_six_months_timestamp = dt.checked_sub_months(Months::new(6)).unwrap().timestamp();
 
